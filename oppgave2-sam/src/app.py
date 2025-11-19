@@ -17,8 +17,21 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 logger.setLevel(LOG_LEVEL)
 
-cloudwatch = boto3.client("cloudwatch")
-METRIC_NAMESPACE = os.getenv("METRIC_NAMESPACE", "AiAlpha")
+_METRIC_NAMESPACE_DEFAULT = "AiAlpha"
+METRIC_NAMESPACE = os.getenv("METRIC_NAMESPACE", _METRIC_NAMESPACE_DEFAULT)
+
+# Lazy client getter to avoid side effects on import and allow tests without AWS region
+_cloudwatch_client = None
+
+def get_cloudwatch():
+    global _cloudwatch_client
+    if _cloudwatch_client is None:
+        region = os.getenv("AWS_REGION")
+        if region:
+            _cloudwatch_client = boto3.client("cloudwatch", region_name=region)
+        else:
+            _cloudwatch_client = boto3.client("cloudwatch")
+    return _cloudwatch_client
 
 
 def _log(event: str, **fields: Any) -> None:
@@ -30,7 +43,7 @@ def _put_metric(name: str, value: float, unit: str = "Count", dims: Dict[str, st
     dimensions = []
     if dims:
         dimensions = [{"Name": k, "Value": v} for k, v in dims.items()]
-    cloudwatch.put_metric_data(
+    get_cloudwatch().put_metric_data(
         Namespace=METRIC_NAMESPACE,
         MetricData=[{
             "MetricName": name,
