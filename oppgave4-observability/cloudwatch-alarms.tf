@@ -10,7 +10,7 @@ variable "alarm_email" {
 variable "lambda_function_name" {
   description = "Lambda function name to monitor"
   type        = string
-  default     = "aialpha-sam-ApiFunction-CHANGE-ME"
+  default     = "aialpha-sam-ApiFunction-mGXbQbuOSrP0"
 }
 
 resource "aws_cloudwatch_metric_alarm" "lambda_errors" {

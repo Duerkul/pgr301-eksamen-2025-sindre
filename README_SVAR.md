@@ -20,10 +20,13 @@ Fyll inn lenker og korte beskrivelser under hver oppgave.
 ## Oppgave 2 – AWS Lambda, SAM og GitHub Actions (25p)
 - Kode og SAM-template: oppgave2-sam/
 - Leveranser:
-  - Lenke til CI workflow-kjøring (build+test+validate): <fyll-inn>
-  - Lenke til CD workflow-kjøring (deploy): <fyll-inn>
-  - API Gateway URL (prod eller stage): <fyll-inn>
-  - Eksempel-kall (curl): <fyll-inn>
+  - Lenke til CI workflow-kjøring (build+test+validate): <legg-inn-lenke-til-seneste-grønne-kjøring>
+  - Lenke til CD workflow-kjøring (deploy): <legg-inn-lenke-til-seneste-grønne-kjøring>
+  - API Gateway URL (prod): https://vybc7yf2w6.execute-api.eu-north-1.amazonaws.com/Prod/analyze
+  - Eksempel-kall (curl):
+    curl -X POST "https://vybc7yf2w6.execute-api.eu-north-1.amazonaws.com/Prod/analyze" -H "Content-Type: application/json" -d '{"text":"bull rally"}'
+  - Eksempel-respons:
+    {"ok": true, "result": {"score": 0.4, "label": "POSITIVE"}}
 
 ## Oppgave 3 – Containere og Docker (25p)
 - Docker-konfig: oppgave3-docker/
