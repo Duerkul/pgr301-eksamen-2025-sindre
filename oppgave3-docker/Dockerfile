@@ -7,7 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1
 
 # Copy app
-COPY ../oppgave2-sam/src /app
+COPY oppgave2-sam/src /app
 
 # Install runtime deps if any
 RUN pip install --no-cache-dir boto3

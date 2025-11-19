@@ -39,7 +39,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./oppgave3-docker
+          context: .
+          file: oppgave3-docker/Dockerfile
           push: ${{ github.event_name == 'push' }}
           tags: ghcr.io/${{ steps.prep.outputs.repo_lc }}/aialpha-app:latest
 
