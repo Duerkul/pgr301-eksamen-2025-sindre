@@ -30,12 +30,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Prepare image tag
+        id: prep
+        run: |
+          REPO_LC="${GITHUB_REPOSITORY,,}"
+          echo "repo_lc=$REPO_LC" >> $GITHUB_OUTPUT
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: ./oppgave3-docker
           push: ${{ github.event_name == 'push' }}
-          tags: ghcr.io/${{ github.repository }}/aialpha-app:latest
+          tags: ghcr.io/${{ steps.prep.outputs.repo_lc }}/aialpha-app:latest
 
       - name: Lint Dockerfile (hadolint)
         uses: hadolint/hadolint-action@v3.1.0
