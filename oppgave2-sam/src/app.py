@@ -5,6 +5,7 @@ import time
 from typing import Any, Dict
 
 import boto3
+import botocore
 
 # Structured logging setup
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
@@ -43,16 +44,19 @@ def _put_metric(name: str, value: float, unit: str = "Count", dims: Dict[str, st
     dimensions = []
     if dims:
         dimensions = [{"Name": k, "Value": v} for k, v in dims.items()]
-    get_cloudwatch().put_metric_data(
-        Namespace=METRIC_NAMESPACE,
-        MetricData=[{
-            "MetricName": name,
-            "Timestamp": int(time.time()),
-            "Value": value,
-            "Unit": unit,
-            "Dimensions": dimensions
-        }]
-    )
+    try:
+        get_cloudwatch().put_metric_data(
+            Namespace=METRIC_NAMESPACE,
+            MetricData=[{
+                "MetricName": name,
+                "Timestamp": int(time.time()),
+                "Value": value,
+                "Unit": unit,
+                "Dimensions": dimensions
+            }]
+        )
+    except (botocore.exceptions.NoCredentialsError, botocore.exceptions.NoRegionError) as e:
+        logger.debug(json.dumps({"event": "metrics_skipped", "reason": str(e)}))
 
 
 def _dummy_sentiment(text: str) -> Dict[str, Any]:
