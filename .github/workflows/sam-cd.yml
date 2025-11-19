@@ -38,4 +38,4 @@ jobs:
 
       - name: Deploy
         working-directory: oppgave2-sam
-        run: sam deploy --stack-name ${{ inputs.stack }} --resolve-s3 --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --region ${{ inputs.region || 'eu-north-1' }}
+        run: sam deploy --stack-name ${{ inputs.stack }} --resolve-s3 --no-confirm-changeset --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --region ${{ inputs.region || 'eu-north-1' }}
