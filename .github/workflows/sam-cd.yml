@@ -1,0 +1,40 @@
+name: SAM CD
+
+on:
+  workflow_dispatch:
+    inputs:
+      stack:
+        description: 'Stack name'
+        default: 'aialpha-sam'
+        required: true
+      region:
+        description: 'AWS region'
+        default: 'eu-north-1'
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ inputs.region }}
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+
+      - name: Setup SAM CLI
+        uses: aws-actions/setup-sam@v2
+
+      - name: Build
+        working-directory: oppgave2-sam
+        run: sam build --use-container=false
+
+      - name: Deploy
+        working-directory: oppgave2-sam
+        run: sam deploy --stack-name ${{ inputs.stack }} --resolve-s3 --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --region ${{ inputs.region }}

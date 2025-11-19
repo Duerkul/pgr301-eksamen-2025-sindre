@@ -1,0 +1,39 @@
+name: Terraform CI
+
+on:
+  push:
+    paths:
+      - 'oppgave1-terraform/**'
+      - '.github/workflows/terraform-ci.yml'
+  pull_request:
+    paths:
+      - 'oppgave1-terraform/**'
+
+jobs:
+  terraform-ci:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: oppgave1-terraform
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+
+      - name: Terraform fmt
+        run: terraform fmt -check -diff
+
+      - name: Terraform init (no backend)
+        run: terraform init -backend=false
+
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Terraform plan (no backend)
+        env:
+          TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
+        run: terraform plan -lock=false -input=false

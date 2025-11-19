@@ -1,0 +1,58 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "x": 0,
+      "y": 0,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [ "AWS/Lambda", "Invocations", "FunctionName", "aialpha-sam-ApiFunction-CHANGE-ME" ],
+          [ ".", "Errors", ".", "." ],
+          [ ".", "Duration", ".", ".", { "stat": "Average" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "eu-north-1",
+        "title": "Lambda - Invocations/Errors/Duration"
+      }
+    },
+    {
+      "type": "metric",
+      "x": 12,
+      "y": 0,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [ "AWS/ApiGateway", "Count", "ApiName", "aialpha-sam", "Stage", "Prod" ],
+          [ ".", "4XXError", ".", ".", ".", "." ],
+          [ ".", "5XXError", ".", ".", ".", "." ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "eu-north-1",
+        "title": "API Gateway - Requests and Errors"
+      }
+    },
+    {
+      "type": "metric",
+      "x": 0,
+      "y": 6,
+      "width": 24,
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [ "AiAlpha", "Requests", "Route", "/analyze" ],
+          [ ".", "Errors", ".", "." ],
+          [ ".", "SentimentScore", ".", ".", { "stat": "Average" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "eu-north-1",
+        "title": "Custom - Requests/Errors/SentimentScore"
+      }
+    }
+  ]
+}

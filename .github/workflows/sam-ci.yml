@@ -1,0 +1,37 @@
+name: SAM CI
+
+on:
+  push:
+    paths:
+      - 'oppgave2-sam/**'
+      - '.github/workflows/sam-ci.yml'
+  pull_request:
+    paths:
+      - 'oppgave2-sam/**'
+
+jobs:
+  sam-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install boto3 pytest
+
+      - name: Run unit tests
+        run: pytest -q
+
+      - name: Setup SAM CLI
+        uses: aws-actions/setup-sam@v2
+
+      - name: SAM Validate
+        working-directory: oppgave2-sam
+        run: sam validate

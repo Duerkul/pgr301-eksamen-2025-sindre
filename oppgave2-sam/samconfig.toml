@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.global]
+[default.build.parameters]
+use_container = false
+[default.deploy.parameters]
+stack_name = "aialpha-sam"
+s3_prefix = "aialpha-sam"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
