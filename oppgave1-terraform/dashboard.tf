@@ -13,7 +13,7 @@ resource "aws_cloudwatch_dashboard" "aialpha_dashboard" {
           metrics = [
             ["AWS/Lambda", "Invocations", "FunctionName", var.lambda_function_name],
             [".", "Errors", ".", "."],
-            [".", "Duration", ".", ".", {"stat": "Average"}]
+            [".", "Duration", ".", ".", {"stat":"Average"}]
           ]
           view    = "timeSeries"
           stacked = false
@@ -49,7 +49,7 @@ resource "aws_cloudwatch_dashboard" "aialpha_dashboard" {
           metrics = [
             ["AiAlpha", "Requests", "Route", "/analyze"],
             [".", "Errors", ".", "."],
-            [".", "SentimentScore", ".", ".", {"stat": "Average"}]
+            [".", "SentimentScore", ".", ".", {"stat":"Average"}]
           ]
           view    = "timeSeries"
           stacked = false
