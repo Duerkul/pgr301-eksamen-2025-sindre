@@ -11,9 +11,9 @@ resource "aws_cloudwatch_dashboard" "aialpha_dashboard" {
         height = 6
         properties = {
           metrics = [
-            [ "AWS/Lambda", "Invocations", "FunctionName", var.lambda_function_name ],
-            [ ".", "Errors", ".", "." ],
-            [ ".", "Duration", ".", ".", { "stat": "Average" } ]
+            ["AWS/Lambda", "Invocations", "FunctionName", var.lambda_function_name],
+            [".", "Errors", ".", "."],
+            [".", "Duration", ".", ".", {"stat": "Average"}]
           ]
           view    = "timeSeries"
           stacked = false
@@ -29,9 +29,9 @@ resource "aws_cloudwatch_dashboard" "aialpha_dashboard" {
         height = 6
         properties = {
           metrics = [
-            [ "AWS/ApiGateway", "Count", "ApiName", var.rest_api_name, "Stage", "Prod" ],
-            [ ".", "4XXError", ".", ".", ".", "." ],
-            [ ".", "5XXError", ".", ".", ".", "." ]
+            ["AWS/ApiGateway", "Count", "ApiName", var.rest_api_name, "Stage", "Prod"],
+            [".", "4XXError", ".", ".", ".", "."],
+            [".", "5XXError", ".", ".", ".", "."]
           ]
           view    = "timeSeries"
           stacked = false
@@ -47,9 +47,9 @@ resource "aws_cloudwatch_dashboard" "aialpha_dashboard" {
         height = 6
         properties = {
           metrics = [
-            [ "AiAlpha", "Requests", "Route", "/analyze" ],
-            [ ".", "Errors", ".", "." ],
-            [ ".", "SentimentScore", ".", ".", { "stat": "Average" } ]
+            ["AiAlpha", "Requests", "Route", "/analyze"],
+            [".", "Errors", ".", "."],
+            [".", "SentimentScore", ".", ".", {"stat": "Average"}]
           ]
           view    = "timeSeries"
           stacked = false
