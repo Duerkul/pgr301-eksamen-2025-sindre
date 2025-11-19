@@ -12,16 +12,16 @@ Fyll inn lenker og korte beskrivelser under hver oppgave.
 - Infrastruktur-kode: oppgave1-terraform/
 - Viktige filer: providers.tf, variables.tf, main.tf, outputs.tf, backend.tf (valgfri remote backend)
 - Leveranser:
-  - Lenke til GitHub Actions workflow-kjøring (Terraform CI): <fyll-inn>
-  - Lenke til GitHub Actions workflow-kjøring (Terraform CD): <fyll-inn>
-  - S3 Bucket navn: <fyll-inn>
-  - Eventuelle skjermbilder/logg: <fyll-inn>
+  - Lenke til GitHub Actions workflow-kjøring (Terraform CI): https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19507603589
+  - Lenke til GitHub Actions workflow-kjøring (Terraform CD): https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19507603589
+  - S3 Bucket navn: aialpha-tf-duerkul-20251119
+  - Eventuelle skjermbilder/logg: se Actions-logg for apply
 
 ## Oppgave 2 – AWS Lambda, SAM og GitHub Actions (25p)
 - Kode og SAM-template: oppgave2-sam/
 - Leveranser:
-  - Lenke til CI workflow-kjøring (build+test+validate): <legg-inn-lenke-til-seneste-grønne-kjøring>
-  - Lenke til CD workflow-kjøring (deploy): <legg-inn-lenke-til-seneste-grønne-kjøring>
+  - Lenke til CI workflow-kjøring (build+test+validate): https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19505194424
+  - Lenke til CD workflow-kjøring (deploy): https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19505194424
   - API Gateway URL (prod): https://vybc7yf2w6.execute-api.eu-north-1.amazonaws.com/Prod/analyze
   - Eksempel-kall (curl):
     curl -X POST "https://vybc7yf2w6.execute-api.eu-north-1.amazonaws.com/Prod/analyze" -H "Content-Type: application/json" -d '{"text":"bull rally"}'
@@ -31,8 +31,8 @@ Fyll inn lenker og korte beskrivelser under hver oppgave.
 ## Oppgave 3 – Containere og Docker (25p)
 - Docker-konfig: oppgave3-docker/
 - Leveranser:
-  - Lenke til Docker CI workflow-kjøring: <fyll-inn>
-  - GHCR Image URL / tag: <fyll-inn>
+  - Lenke til Docker CI workflow-kjøring: https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19504953340
+  - GHCR Image URL / tag: <ikke funnet – Docker CI er grønn, men image vises ikke i GHCR; se tiltak nedenfor>
   - Lokalt kjøreeksempel (docker compose): <fyll-inn>
 
 ## Oppgave 4 – Metrics, Observability og CloudWatch (25p)
