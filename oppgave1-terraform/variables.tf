@@ -13,7 +13,7 @@ variable "project_name" {
 variable "bucket_name" {
   description = "Name of the S3 bucket to create (must be globally unique)"
   type        = string
-  default     = "aialpha-terraform-state-demo-CHANGE-ME"
+  default     = "aialpha-tf-duerkul-20251119"
 }
 
 variable "ci_mode" {
