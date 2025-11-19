@@ -36,4 +36,7 @@ jobs:
 
       - name: SAM Validate
         working-directory: oppgave2-sam
+        env:
+          AWS_REGION: eu-north-1
+          AWS_DEFAULT_REGION: eu-north-1
         run: sam validate
