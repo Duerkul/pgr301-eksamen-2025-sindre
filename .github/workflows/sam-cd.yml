@@ -34,7 +34,7 @@ jobs:
 
       - name: Build
         working-directory: oppgave2-sam
-        run: sam build --use-container=false
+        run: sam build
 
       - name: Deploy
         working-directory: oppgave2-sam
