@@ -13,8 +13,9 @@ Fyll inn lenker og korte beskrivelser under hver oppgave.
 - Viktige filer: providers.tf, variables.tf, main.tf, outputs.tf, backend.tf (valgfri remote backend)
 - Leveranser:
   - Lenke til GitHub Actions workflow-kjøring (Terraform CI): https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19507603589
-  - Lenke til GitHub Actions workflow-kjøring (Terraform CD): https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19507603589
+  - Lenke til GitHub Actions workflow-kjøring (Terraform CD): https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19509461459/job/55844985141
   - S3 Bucket navn: aialpha-tf-duerkul-20251119
+  - S3 Bucket ARN: arn:aws:s3:::aws-sam-cli-managed-default-samclisourcebucket-al2vc53y21vh
   - Eventuelle skjermbilder/logg: se Actions-logg for apply
 
 ## Oppgave 2 – AWS Lambda, SAM og GitHub Actions (25p)
@@ -32,7 +33,7 @@ Fyll inn lenker og korte beskrivelser under hver oppgave.
 - Docker-konfig: oppgave3-docker/
 - Leveranser:
   - Lenke til Docker CI workflow-kjøring: https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19504953340
-  - GHCR Image URL / tag: <ikke funnet – Docker CI er grønn, men image vises ikke i GHCR; se tiltak nedenfor>
+  - GHCR Image URL / tag: ghcr.io/duerkul/pgr301-eksamen-2025-sindre/aialpha-app:latest
   - Lokalt kjøreeksempel (docker compose): <fyll-inn>
 
 ## Oppgave 4 – Metrics, Observability og CloudWatch (25p)
