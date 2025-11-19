@@ -17,5 +17,5 @@ provider "aws" {
   skip_metadata_api_check     = var.ci_mode
 
   # S3 path-style to minimize provider lookups in CI
-  s3_use_path_style           = var.ci_mode
+  s3_use_path_style = var.ci_mode
 }
