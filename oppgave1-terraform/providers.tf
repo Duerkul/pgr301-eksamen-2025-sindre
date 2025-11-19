@@ -10,4 +10,8 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
+
+  # In CI, avoid STS/account validation calls by toggling these flags
+  skip_credentials_validation = var.ci_mode
+  skip_requesting_account_id  = var.ci_mode
 }

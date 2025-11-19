@@ -15,3 +15,9 @@ variable "bucket_name" {
   type        = string
   default     = "aialpha-terraform-state-demo-CHANGE-ME"
 }
+
+variable "ci_mode" {
+  description = "If true, configure provider to skip credential/account validation during CI plan"
+  type        = bool
+  default     = false
+}
