@@ -25,7 +25,7 @@ jobs:
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: ${{ inputs.region }}
+          aws-region: ${{ inputs.region || 'eu-north-1' }}
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
 
       - name: Setup SAM CLI
@@ -37,4 +37,4 @@ jobs:
 
       - name: Deploy
         working-directory: oppgave2-sam
-        run: sam deploy --stack-name ${{ inputs.stack }} --resolve-s3 --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --region ${{ inputs.region }}
+        run: sam deploy --stack-name ${{ inputs.stack }} --resolve-s3 --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --region ${{ inputs.region || 'eu-north-1' }}
