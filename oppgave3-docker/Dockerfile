@@ -9,8 +9,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # Copy app
 COPY oppgave2-sam/src /app
 
-# Install runtime deps if any
-RUN pip install --no-cache-dir boto3
+# Install runtime deps via pinned requirements for reproducibility
+COPY oppgave3-docker/requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 # Create non-root user
 RUN useradd -m appuser && chown -R appuser:appuser /app
