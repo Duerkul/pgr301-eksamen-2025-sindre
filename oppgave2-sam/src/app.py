@@ -34,8 +34,8 @@ def get_cloudwatch():
     return _cloudwatch_client
 
 
-def _log(event: str, **fields: Any) -> None:
-    payload = {"event": event, **fields, "ts": int(time.time())}
+def _log(evt_name: str, **fields: Any) -> None:
+    payload = {"event": evt_name, **fields, "ts": int(time.time())}
     logger.info(json.dumps(payload))
 
 
