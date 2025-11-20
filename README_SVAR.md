@@ -1,6 +1,6 @@
 # README_SVAR
 
-Dette dokumentet inneholder leveranser og svar for PGR301 EKSAMEN 2025 - AiAlpha.
+Dette dokumentet beskriver leveransene og resultatene for PGR301 EKSAMEN 2025 - AiAlpha.
 
 ## Generell informasjon
 - Repository URL: https://github.com/Duerkul/pgr301-eksamen-2025-sindre
@@ -63,15 +63,19 @@ Dette dokumentet inneholder leveranser og svar for PGR301 EKSAMEN 2025 - AiAlpha
     - {"event": "analysis_complete", "result": {"score": 0.4, "label": "POSITIVE"}, "ts": 1763578567}
 
 ## Oppgave 5 – Drøfteoppgave – DevOps-prinsipper (10p)
-- Kort drøfting (legg her eller i egen fil):
+- Kort drøfting (lagt inn her):
 
-### Forslag til drøfting (kort mal)
-- Versjonskontroll og branchestrategi: trunk-based med korte feature branches, PR-krav, beskyttede branches.
-- CI/CD: bygg, test, sikkerhetsskanning, artefakter, progressive deploys (manual approval prod), rollback.
-- IaC: Terraform i separate miljøer/states, moduler, policy-as-code.
-- Observability: metrics, logs, traces; golden signals; SLO/SLI; alarms med on-call.
-- Sikkerhet: least privilege IAM, secrets i GitHub, scanning (trivy, tfsec), dependabot.
-- Kvalitet: code review, linting, testtyper (unit, integration), testpyramide.
+For at AiAlpha skal kunne utvikles videre på en trygg og skalerbar måte, må jeg etablere en arbeidsform som kombinerer fart med kvalitet. Jeg har valgt en trunk-based strategi med små, hyppige endringer, og brukt pull requests og beskyttede branches for å holde kontroll på endringene. CI/CD-pipelines fungerer som motoren i leveransene: bygg, tester og sikkerhetssjekker kjører automatisk (hadolint for Docker er aktiv), og produksjons-deploys utløses manuelt via workflow-dispatch. Rollback håndteres ved å rulle tilbake SAM/CloudFormation-stacken til forrige versjon eller ved kontrollert Terraform destroy/apply ved behov.
+
+Med Terraform beskrives infrastrukturen slik at miljøene kan gjenskapes presist. Koden inkluderer S3, CloudWatch dashboard og alarmer – og gjør det mulig å standardisere sikkerhet (f.eks. blokkering av offentlig tilgang, versjonering og kryptering på S3) på en forutsigbar måte.
+
+Observability er prioritert: Lambda logger strukturert JSON, og applikasjonen eksponerer custom metrics (Requests, SentimentScore, Errors) i AiAlpha-namespace. CloudWatch dashboard og alarmer (Lambda Errors og API Gateway 5XX) er definert som kode og deployes via Terraform.
+
+Når det gjelder sikkerhet, er IAM-rettighetene i CD bevisst bredere for å sikre fremdrift i øvingen (GitHub Actions bruker statiske nøkler lagret som Secrets). Målet er å stramme inn til least privilege og bytte til OIDC-basert rolleforutsetning for nøkkelfri drift. Sikkerhetsskanning er delvis på plass (hadolint). Neste steg er å utvide med tfsec (Terraform) og trivy (container images) for å fange sårbarheter tidlig.
+
+Kvalitet ivaretas med code review (via PR), linting og enhetstester for Lambda (pytest). Dette danner en praktisk testpyramide der raske enhetstester kjøres i CI, mens integrasjon verifiseres gjennom deploy og kjøring i skymiljø.
+
+Summen er en leveransemodell som lar meg levere raskt og trygt nå, samtidig som den skalerer til teamarbeid og høyere krav fra kunder og investorer.
 
 ---
-Denne mallen er ment som en sjekkliste slik at alle leveranser blir dokumentert i sensur.
+
