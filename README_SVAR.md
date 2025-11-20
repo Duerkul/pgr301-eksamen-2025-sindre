@@ -1,16 +1,15 @@
 # README_SVAR
 
-Dette dokumentet inneholder dine leveranser og svar for PGR301 EKSAMEN 2025 - AiAlpha.
-Fyll inn lenker og korte beskrivelser under hver oppgave.
+Dette dokumentet inneholder leveranser og svar for PGR301 EKSAMEN 2025 - AiAlpha.
 
 ## Generell informasjon
-- Repository URL: <fyll-inn>
-- AWS Region: <fyll-inn>
-- AWS Account ID: <fyll-inn>
+- Repository URL: https://github.com/Duerkul/pgr301-eksamen-2025-sindre
+- AWS Region: eu-north-1
+- AWS Account ID: 439256599420
 
 ## Oppgave 1 – Terraform, S3 og IaC (15p)
 - Infrastruktur-kode: oppgave1-terraform/
-- Viktige filer: providers.tf, variables.tf, main.tf, outputs.tf, backend.tf (valgfri remote backend)
+- Viktige filer: providers.tf, variables.tf, main.tf, outputs.tf, backend.tf
 - Leveranser:
   - Lenke til GitHub Actions workflow-kjøring (Terraform CI): https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19507603589
   - Lenke til GitHub Actions workflow-kjøring (Terraform CD): https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19509805714
@@ -34,14 +33,34 @@ Fyll inn lenker og korte beskrivelser under hver oppgave.
 - Leveranser:
   - Lenke til Docker CI workflow-kjøring: https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19504953340
   - GHCR Image URL / tag: ghcr.io/duerkul/pgr301-eksamen-2025-sindre/aialpha-app:latest
-  - Lokalt kjøreeksempel (docker compose): <fyll-inn>
+  - Lokalt kjøreeksempel (docker compose):
+    - Bygg og start: docker compose -f oppgave3-docker/docker-compose.yml up --build
+    - Åpne: http://localhost:8080
+    - Stopp: docker compose -f oppgave3-docker/docker-compose.yml down
 
 ## Oppgave 4 – Metrics, Observability og CloudWatch (25p)
 - Observability: oppgave4-observability/
 - Leveranser:
-  - CloudWatch Dashboard navn/lenke: <fyll-inn>
-  - Alarm-navn og metrikk: <fyll-inn>
-  - Eksempel på strukturert logg-linje fra Lambda: <fyll-inn>
+  - CloudWatch Dashboard navn: aialpha-observability (region: eu-north-1)
+  - Alarm-navn og metrikk:
+    - aialpha-lambda-errors
+      - Namespace: AWS/Lambda
+      - Metric name: Errors
+      - Dimension: FunctionName = aialpha-sam-ApiFunction-mGXbQbuOSrP0
+      - Statistic: Sum
+      - Period: 1 minute
+      - Threshold: Errors > 1 for 1 datapoints within 1 minute
+      - State: OK
+    - aialpha-api-5xx
+      - Namespace: AWS/ApiGateway
+      - Metric name: 5XXError
+      - Dimensions: ApiName = aialpha-sam, Stage = Prod
+      - Statistic: Sum
+      - Period: 1 minute
+      - Threshold: 5XXError > 1 for 1 datapoints within 1 minute
+      - State: OK
+  - Eksempel på strukturert logg-linje fra Lambda (Logs Insights):
+    - {"event": "analysis_complete", "result": {"score": 0.4, "label": "POSITIVE"}, "ts": 1763578567}
 
 ## Oppgave 5 – Drøfteoppgave – DevOps-prinsipper (10p)
 - Kort drøfting (legg her eller i egen fil):
