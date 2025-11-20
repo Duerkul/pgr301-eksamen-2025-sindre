@@ -34,9 +34,9 @@ Dette dokumentet beskriver leveransene og resultatene for PGR301 EKSAMEN 2025 - 
   - Lenke til Docker CI workflow-kjøring: https://github.com/Duerkul/pgr301-eksamen-2025-sindre/actions/runs/19504953340
   - GHCR Image URL / tag: ghcr.io/duerkul/pgr301-eksamen-2025-sindre/aialpha-app:latest
   - Lokalt kjøreeksempel (docker compose):
-    - Bygg og start: docker compose -f oppgave3-docker/docker-compose.yml up --build
+    - Bygg og start: docker compose up --build
     - Åpne: http://localhost:8080
-    - Stopp: docker compose -f oppgave3-docker/docker-compose.yml down
+    - Stopp: docker compose down
 
 ## Oppgave 4 – Metrics, Observability og CloudWatch (25p)
 - Observability: oppgave4-observability/
@@ -63,7 +63,7 @@ Dette dokumentet beskriver leveransene og resultatene for PGR301 EKSAMEN 2025 - 
     - {"event": "analysis_complete", "result": {"score": 0.4, "label": "POSITIVE"}, "ts": 1763578567}
 
 ## Oppgave 5 – Drøfteoppgave – DevOps-prinsipper (10p)
-- Kort drøfting (lagt inn her):
+
 
 For at AiAlpha skal kunne utvikles videre på en trygg og skalerbar måte, må jeg etablere en arbeidsform som kombinerer fart med kvalitet. Jeg har valgt en trunk-based strategi med små, hyppige endringer, og brukt pull requests og beskyttede branches for å holde kontroll på endringene. CI/CD-pipelines fungerer som motoren i leveransene: bygg, tester og sikkerhetssjekker kjører automatisk (hadolint for Docker er aktiv), og produksjons-deploys utløses manuelt via workflow-dispatch. Rollback håndteres ved å rulle tilbake SAM/CloudFormation-stacken til forrige versjon eller ved kontrollert Terraform destroy/apply ved behov.
 
